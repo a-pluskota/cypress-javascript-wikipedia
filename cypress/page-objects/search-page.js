@@ -31,7 +31,12 @@ export function validateEverySearchResultsElementContains(elementToSearchFor) {
 
 export function getSearchResultsListElementLink(numberOfElement) {
 
-
 return cy.get(`:nth-child(${numberOfElement}) > .mw-search-result-heading > a`)
+}
+
+export function openSearchResult(numberOfResultListElement) {
+    
+    getSearchResultsListElementLink(numberOfResultListElement)
+    .click();
 }
 
