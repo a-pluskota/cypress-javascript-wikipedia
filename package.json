@@ -1,0 +1,13 @@
+{
+  "name": "cypress-javascript-wikipedia",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "./node_modules/.bin/cypress open"
+  },
+  "author": "https://github.com/a-pluskota",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^3.7.0"
+  }
+}
