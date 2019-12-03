@@ -8,6 +8,7 @@ import {
     SEARCH_RESULT_HEADER,
     SEARCH_RESULT_ABSTRACT,
     SEARCH_RESULT_DATA,
+    SEARCH_RESULTS_HEADER_TEXT,
     getSearchResultsListHeader,
     getSearchResultsList,
     validateEverySearchResultsElementContains,
@@ -15,9 +16,8 @@ import {
 } from "../page-objects/search-page";
 
 import { 
-    SEARCH_TEXT,
-    SEARCH_RESULTS_HEADER_TEXT
-} from "../test-data/constants";
+    SEARCH_TEXT
+} from "../resources/constants";
 
 describe("search page", () => {
 

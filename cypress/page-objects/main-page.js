@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { MAIN_PAGE_URL } from "../test-data/constants";
+import { MAIN_PAGE_URL } from "../resources/constants";
 
 export function navigate() {
     cy.visit(MAIN_PAGE_URL);

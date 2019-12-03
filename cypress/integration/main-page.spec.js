@@ -12,7 +12,7 @@ import {
 import { 
     SEARCH_TEXT, 
     MAIN_PAGE_URL 
-} from "../test-data/constants";
+} from "../resources/constants";
 
 describe("main page", () => {
 

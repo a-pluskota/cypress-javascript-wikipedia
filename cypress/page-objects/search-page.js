@@ -3,6 +3,7 @@
 export const SEARCH_RESULT_HEADER = '.mw-search-result-heading';
 export const SEARCH_RESULT_ABSTRACT = '.searchresult';
 export const SEARCH_RESULT_DATA = '.mw-search-result-data';
+export const SEARCH_RESULTS_HEADER_TEXT = 'Search results';
 
 export function getSearchResultsListHeader() {
 
