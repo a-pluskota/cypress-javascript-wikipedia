@@ -39,7 +39,6 @@ describe("article page", () => {
     it("(if table of contents exists) should table of content have link to References list", () => {
 
         doStaffIfTableOfContentForArticleExists(
-            
             [
                 getReferencesLink()
                 .contains(REFERENCES),
@@ -53,15 +52,16 @@ describe("article page", () => {
 
         doStaffIfTableOfContentForArticleExists(
 
-        getReferencesLink().invoke('attr', 'href').then(href => {
+            getReferencesLink().invoke('attr', 'href').then(href => {
 
-            getReferencesLink()
-            .click();
-
-            cy.url()
-            .should('include', href);
-
-        }));
+                getReferencesLink()
+                .click();
+    
+                cy.url()
+                .should('include', href);
+    
+            })
+        );
     });
 
 
