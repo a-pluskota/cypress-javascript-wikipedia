@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 
-import { MAIN_PAGE_URL, SEARCH_TEXT } from "../constants/constants";
+import { 
+    MAIN_PAGE_URL, 
+    SEARCH_TEXT 
+} from "../constants/constants";
 
 describe("page frame", () => {
     it(`should url be equal to ${MAIN_PAGE_URL}`, () => {

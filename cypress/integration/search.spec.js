@@ -1,13 +1,13 @@
 /// <reference types="cypress" />
 
-import { SEARCH_TEXT } from "../constants/constants";
-
+import { 
+    SEARCH_TEXT 
+} from "../constants/constants";
 
 describe("search results list", () => {
 
     beforeEach(() => {
         cy.searchForPhrase(SEARCH_TEXT)
-
     });
 
     it(`should show header with correct title` , () => {
@@ -25,15 +25,19 @@ describe("search results list", () => {
 
 
     it('should every search results list element contains header', () => {
+        
         cy.get('.mw-search-result').each(function (searchResultElement) {
 
             cy.wrap(searchResultElement)
             .should('have.descendants', '.mw-search-result-heading')
     
         })
+   
     });
 
     it('should have href attribute on link to article', () => {
-        cy.getSearchResultLink().should('have.attr', 'href');
+        
+        cy.getSearchResultLink()
+        .should('have.attr', 'href');
     });
 })
