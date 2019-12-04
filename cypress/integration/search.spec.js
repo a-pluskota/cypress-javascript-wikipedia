@@ -1,74 +1,39 @@
 /// <reference types="cypress" />
 
-import { 
-    searchForPhrase, getSearchInput
-} from "../page-objects/main-page";
+import { SEARCH_TEXT } from "../constants/constants";
 
-import { 
-    SEARCH_RESULT_HEADER,
-    SEARCH_RESULT_ABSTRACT,
-    SEARCH_RESULT_DATA,
-    SEARCH_RESULTS_HEADER_TEXT,
-    getSearchResultsListHeader,
-    getSearchResultsList,
-    validateEverySearchResultsElementContains,
-    getSearchResultsListElementLink
-} from "../page-objects/search-page";
 
-import { 
-    SEARCH_TEXT
-} from "../resources/constants";
-
-describe("search page", () => {
+describe("search results list", () => {
 
     beforeEach(() => {
-
-        searchForPhrase(SEARCH_TEXT);
+        cy.searchForPhrase(SEARCH_TEXT)
 
     });
 
-    it(`should show header with title "${SEARCH_RESULTS_HEADER_TEXT}"` , () => {
+    it(`should show header with correct title` , () => {
 
-        getSearchResultsListHeader()
+        cy.get('#firstHeading')
         .should('be.visible')
-        .and('contain.text', SEARCH_RESULTS_HEADER_TEXT);
+        .and('contain.text', 'Search results');
     });
 
     it('should show search results list', () => {
        
-        getSearchResultsList()
+        cy.get('.searchresults')
         .should('be.visible');
     });
 
 
     it('should every search results list element contains header', () => {
+        cy.get('.mw-search-result').each(function (searchResultElement) {
 
-        validateEverySearchResultsElementContains(SEARCH_RESULT_HEADER)
+            cy.wrap(searchResultElement)
+            .should('have.descendants', '.mw-search-result-heading')
     
+        })
     });
 
-    it('should every search results list element contains abstract', () => {
-
-        validateEverySearchResultsElementContains(SEARCH_RESULT_ABSTRACT)
-    
-    });
-
-    it('should every search results list element contains result data', () => {
-
-        validateEverySearchResultsElementContains(SEARCH_RESULT_DATA)
-    
-    });
-
-    it('should redirect to serach result url afrer clicking on it', () => {
-
-        getSearchResultsListElementLink(1).invoke('attr', 'href').then(href => {
-            
-            getSearchResultsListElementLink(1)
-            .click();
-
-            cy.url()
-            .should('include', href);
-
-        });
+    it('should have href attribute on link to article', () => {
+        cy.getSearchResultLink().should('have.attr', 'href');
     });
 })

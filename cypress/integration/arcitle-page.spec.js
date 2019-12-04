@@ -1,68 +1,27 @@
 /// <reference types="cypress" />
 
-import { 
-    searchForPhrase 
-} from "../page-objects/main-page";
+import { SEARCH_TEXT } from "../constants/constants";
 
-import { 
-    openSearchResult 
-} from "../page-objects/search-page";
-
-import { 
-    REFERENCES,
-    getArticleTitle,
-    getReferencesLink,
-    getReferencesBox,
-    doStaffIfTableOfContentForArticleExists
-} from "../page-objects/article-page";
-
-import { 
-    SEARCH_TEXT, 
-    MAIN_PAGE_URL 
-} from "../resources/constants";
 
 describe("article page", () => {
 
     beforeEach(() => {
-        
-        searchForPhrase(SEARCH_TEXT);
-        openSearchResult(1);
-
+        cy.openFirstSearchResult(SEARCH_TEXT);
     });
 
     it("should show article title", () => {
-        
-        getArticleTitle()
-        .should('be.visible');
+        cy.get('#firstHeading').should('be.visible');
     })
 
-    it("(if table of contents exists) should table of content have link to References list", () => {
-
-        doStaffIfTableOfContentForArticleExists(
-            [
-                getReferencesLink()
-                .contains(REFERENCES),
-                getReferencesBox()
-                .should('contain.html', 'li')
-            ]
-        )
+    it("should show content body", () => {
+        cy.get('#bodyContent').should('be.visible');
     })
 
-    it('(if table of contents exists) should link to references redirect references list url afrer clicking on it', () => {
-
-        doStaffIfTableOfContentForArticleExists(
-
-            getReferencesLink().invoke('attr', 'href').then(href => {
-
-                getReferencesLink()
-                .click();
-    
-                cy.url()
-                .should('include', href);
-    
-            })
-        );
+    it('(if table of contents exists) should have at least one link content section', () => {
+        cy.get('body').then(($body) => {
+            if ($body.find('#toc').length) {
+                cy.get('.tocsection-1 > a').should('have.attr', 'href');
+            } 
+        })
     });
-
-
 })
