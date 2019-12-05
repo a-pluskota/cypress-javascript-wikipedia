@@ -19,5 +19,3 @@ Cypress.Commands.add('openFirstSearchResult', (phrase) => {
     cy.searchForPhrase(phrase);
     cy.getSearchResultLink().click();
 })
-
-
