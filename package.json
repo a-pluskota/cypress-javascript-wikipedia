@@ -1,7 +1,7 @@
 {
   "name": "cypress-javascript-wikipedia",
   "version": "1.0.0",
-  "description": "",
+  "description": "An example project using the automation tool, Cypress.",
   "scripts": {
     "test": "./node_modules/.bin/cypress open"
   },
